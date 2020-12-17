@@ -33,7 +33,7 @@ namespace Products.Infrastructure.Data
 
         public void UpdateProduct(Product product)
         {
-            var persistedProduct = _dbContext.Product.First(p => p.Id == product.Id);
+            var persistedProduct = _dbContext.Product.FirstOrDefault(p => p.Id == product.Id);
             if (persistedProduct == null)
             {
                 throw new PersistenceException("Product not found, id : " + product.Id);

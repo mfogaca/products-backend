@@ -19,10 +19,15 @@ namespace Products.Core.Services
 
         public void AddProduct(Product product)
         {
-            //Example on how to throw errors for expected behaviors
+            //Business Rule : The max price of each product must be lower then 100000
             if (product.Price > 100000)
             {
                 throw new BusinessException("The price of product must be lower then 100,000.00");
+            }
+
+            if (product.Image.Length > 1048576)
+            {
+                throw new BusinessException("The max size of the product image is 100KB");
             }
             _repository.AddProduct(product);
         }
